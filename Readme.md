@@ -1,7 +1,7 @@
 # Личный проект «TaskForce»
 
 * Студент: [Мария Некрасова](https://up.htmlacademy.ru/nodejs-2/3/user/2100951).
-* Наставник: `Неизвестно`.
+* Наставник: [Сергей Вохмянин](https://htmlacademy.ru/profile/id530823).
 
 ---
 
