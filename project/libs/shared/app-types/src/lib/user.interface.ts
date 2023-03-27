@@ -9,4 +9,5 @@ export interface User {
   avatar: string;
   passwordHash: string;
   role: UserRole;
+  city: string;
 }
