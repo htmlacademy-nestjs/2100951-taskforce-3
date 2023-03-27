@@ -1,7 +1,9 @@
 import { CRUDRepository } from '@project/util/util-types';
 import { User } from '@project/shared/app-types';
 import { WorkplaceUserEntity } from './workplace-user.entity.js';
+import { Injectable } from '@nestjs/common';
 
+@Injectable()
 export class WorkplaceUserMemoryRepository implements CRUDRepository<WorkplaceUserEntity, string, User> {
   private repository: {[key: string]: User} = {};
 
