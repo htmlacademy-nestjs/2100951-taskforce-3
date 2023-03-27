@@ -1,9 +1,11 @@
 import { Module } from '@nestjs/common';
+import { WorkplaceUserModule } from '../workplace-user/workplace-user.module';
 import { AuthenticationController } from './authentication.controller';
 import { AuthenticationService } from './authentication.service';
 
 @Module({
-  controllers: [AuthenticationController],
-  providers: [AuthenticationService],
+    imports: [WorkplaceUserModule],
+    controllers: [AuthenticationController],
+    providers: [AuthenticationService],
 })
-export class AuthenticationModule {}
+export class AuthenticationModule { }
