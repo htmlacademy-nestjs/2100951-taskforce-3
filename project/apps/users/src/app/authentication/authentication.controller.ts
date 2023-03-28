@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger/dist/index.js';
+import { ApiResponse, ApiTags } from '@nestjs/swagger/dist/index.js';
 import { fillObject } from '@project/util/util-core';
 import { AuthenticationService } from './authentication.service.js';
 import { CreateUserDto } from './dto/create-user.dto.js';
@@ -20,12 +20,18 @@ export class AuthenticationController {
       return fillObject(UserRdo, newUser);
     }
 
+    @ApiResponse({
+        type: LoggedUserRdo,
+    })
     @Post('login')
     public async login(@Body() dto: LoginUserDto) {
       const verifiedUser = await this.authService.verifyUser(dto);
       return fillObject(LoggedUserRdo, verifiedUser);
     }
   
+    @ApiResponse({
+        type:UserRdo
+    })
     @Get(':id')
     public async show(@Param('id') id: string) {
       const existUser = await this.authService.getUser(id);
