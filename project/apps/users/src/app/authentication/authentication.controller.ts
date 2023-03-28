@@ -1,4 +1,5 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger/dist/index.js';
 import { fillObject } from '@project/util/util-core';
 import { AuthenticationService } from './authentication.service.js';
 import { CreateUserDto } from './dto/create-user.dto.js';
@@ -6,6 +7,7 @@ import { LoginUserDto } from './dto/login-user.dto.js';
 import { LoggedUserRdo } from './rdo/logged-user.rdo.js';
 import { UserRdo } from './rdo/user.rdo.js';
 
+@ApiTags('authentication')
 @Controller('auth')
 export class AuthenticationController {
     constructor(
