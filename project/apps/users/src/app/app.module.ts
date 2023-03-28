@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { AuthenticationModule } from './authentication/authentication.module.js';
-import { WorkplaceUserModule } from './blog-user/workplace-user.module.js';
+import { TaskUserModule } from './task-user/task-user.module.js';
 
 @Module({
-  imports: [AuthenticationModule, WorkplaceUserModule],
+  imports: [AuthenticationModule, TaskUserModule],
   controllers: [],
   providers: [],
 })

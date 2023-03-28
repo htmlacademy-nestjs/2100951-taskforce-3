@@ -2,7 +2,7 @@ import { Body, Controller, Post } from '@nestjs/common';
 import { fillObject } from '@project/util/util-core';
 import { AuthenticationService } from './authentication.service.js';
 import { CreateUserDto } from './dto/create-user.dto.js';
-import { UserRdo } from './rdo/usre.rdo.js';
+import { UserRdo } from './rdo/user.rdo.js';
 
 @Controller('auth')
 export class AuthenticationController {

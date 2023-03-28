@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
-import { WorkplaceUserModule } from '../workplace-user/workplace-user.module';
+import { TaskUserModule } from '../task-user/task-user.module';
 import { AuthenticationController } from './authentication.controller';
 import { AuthenticationService } from './authentication.service';
 
 @Module({
-    imports: [WorkplaceUserModule],
+    imports: [TaskUserModule],
     controllers: [AuthenticationController],
     providers: [AuthenticationService],
 })
