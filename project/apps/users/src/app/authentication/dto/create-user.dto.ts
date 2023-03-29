@@ -36,7 +36,7 @@ export class CreateUserDto {
 
   @ApiProperty({
     description: 'User city',
-    example: 'Ufa'
+    example: 'Moscow'
   })
   public city: string;
 
