@@ -1,0 +1,11 @@
+# Create a new Review
+POST http://localhost:3333/api/Reviews HTTP/1.1
+Content-Type: application/json
+
+{
+  "message": "job well done",
+  "taskId": "1234",
+  "rating": 10
+}
+
+###
