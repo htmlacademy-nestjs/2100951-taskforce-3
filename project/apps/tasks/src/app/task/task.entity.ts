@@ -1,4 +1,4 @@
-import { TaskStatus, Task } from '@project/shared/app-types';
+import { TaskStatus, Task, City } from '@project/shared/app-types';
 
 export class TaskEntity implements Task {
   public _id: string;
@@ -10,7 +10,7 @@ export class TaskEntity implements Task {
   public image?: string;
   public address?: string;
   public tags?: string[];
-  public city: string;
+  public city: City;
   public status: TaskStatus;
 
   constructor(task: Task) {
