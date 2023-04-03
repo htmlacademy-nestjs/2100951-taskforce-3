@@ -1,3 +1,4 @@
+import { City } from "./city.enum.js";
 import { TaskStatus } from "./task-status.enum.js";
 
 export interface Task {
@@ -10,6 +11,6 @@ export interface Task {
     image?: string;
     address?:string;  
     tags?: string[];
-    city?: string;
-    status: TaskStatus;
+    city: City;
+    status?: TaskStatus;
 }

@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { City } from '@project/shared/app-types';
 
 export class CreateTaskDto {
   @ApiProperty({
@@ -52,6 +53,7 @@ export class CreateTaskDto {
   @ApiProperty({
     description: 'Task city',
     example: 'Moscow',
+    type: () => typeof City.Moscow
   })
-  public city: string;
+  public city: City;
 }

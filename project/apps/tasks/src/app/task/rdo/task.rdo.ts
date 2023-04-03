@@ -1,5 +1,6 @@
 import { Expose } from 'class-transformer';
 import { ApiProperty } from '@nestjs/swagger';
+import { City } from '@project/shared/app-types';
 
 export class TaskRdo {
   @ApiProperty({
@@ -70,7 +71,7 @@ export class TaskRdo {
     example: 'Mosckow'
   })
   @Expose()
-  public city: string;
+  public city: City;
 
   @ApiProperty({
     description: 'Task status',

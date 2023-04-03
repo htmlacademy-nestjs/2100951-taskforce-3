@@ -1,15 +1,15 @@
 import { ConflictException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import dayjs from 'dayjs';
-import { TaskUserMemoryRepository } from '../task-user/task-user-memory.repository.js';
 import { TaskUserEntity } from '../task-user/task-user.entity.js';
 import { AUTH_USER_EXISTS, AUTH_USER_NOT_FOUND, AUTH_USER_PASSWORD_WRONG } from './authentication.constant.js';
 import { CreateUserDto } from './dto/create-user.dto.js';
 import { LoginUserDto } from './dto/login-user.dto.js';
+import { TaskUserRepository } from '../task-user/task-user.repository.js';
 
 @Injectable()
 export class AuthenticationService {
     constructor(
-      private readonly taskUserRepository: TaskUserMemoryRepository
+      private readonly taskUserRepository: TaskUserRepository
     ) {}
   
     public async register(dto: CreateUserDto) {
