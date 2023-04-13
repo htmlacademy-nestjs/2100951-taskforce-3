@@ -53,7 +53,6 @@ export class CreateTaskDto {
   @ApiProperty({
     description: 'Task city',
     example: 'Moscow',
-    type: () => typeof City.Moscow
   })
   public city: City;
 }
