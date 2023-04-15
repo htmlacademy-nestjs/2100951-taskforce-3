@@ -1,11 +1,12 @@
+import { Category } from "./category.interface.js";
 import { City } from "./city.enum.js";
 import { TaskStatus } from "./task-status.enum.js";
 
 export interface Task {
-    _id?: string;
+    id?: string;
     title: string;
     details: string;
-    category: string;
+    category: Category;
     price?: number;
     deadline?: Date;
     image?: string;
@@ -13,4 +14,7 @@ export interface Task {
     tags?: string[];
     city: City;
     status?: TaskStatus;
+    userId: string;
+    comments?: Comment[];
+    response?: Response;
 }

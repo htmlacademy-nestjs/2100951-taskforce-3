@@ -28,7 +28,7 @@ export class TaskMemoryRepository implements CRUDRepository<TaskEntity, string, 
   }
 
   public async update(id: string, item: TaskEntity): Promise<Task> {
-    this.repository[id] = {...item.toObject(), _id: id};
+    this.repository[id] = {...item.toObject(), id: id};
     return this.findById(id);
   }
 }
