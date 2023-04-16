@@ -37,7 +37,6 @@ export class CreateUserDto {
   @ApiProperty({
     description: 'User city',
     example: 'Moscow',
-    type: () => typeof City.Moscow
   })
   public city: City;
 
