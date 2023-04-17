@@ -1,1 +1,1 @@
-export * from './lib/config-config-uploader.module';
+export * from './lib/config-uploader.module';
