@@ -1,11 +1,11 @@
 import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post } from '@nestjs/common';
-import { ApiResponse, ApiTags } from '@nestjs/swagger/dist/index.js';
+import { ApiResponse, ApiTags } from '@nestjs/swagger/dist/index';
 import { fillObject } from '@project/util/util-core';
-import { AuthenticationService } from './authentication.service.js';
-import { CreateUserDto } from './dto/create-user.dto.js';
-import { LoginUserDto } from './dto/login-user.dto.js';
-import { LoggedUserRdo } from './rdo/logged-user.rdo.js';
-import { UserRdo } from './rdo/user.rdo.js';
+import { AuthenticationService } from './authentication.service';
+import { CreateUserDto } from './dto/create-user.dto';
+import { LoginUserDto } from './dto/login-user.dto';
+import { LoggedUserRdo } from './rdo/logged-user.rdo';
+import { UserRdo } from './rdo/user.rdo';
 
 @ApiTags('authentication')
 @Controller('auth')

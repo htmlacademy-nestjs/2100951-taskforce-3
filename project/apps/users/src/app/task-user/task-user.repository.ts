@@ -3,8 +3,8 @@ import { Injectable } from '@nestjs/common';
 import { User } from '@project/shared/app-types';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
-import { TaskUserEntity } from './task-user.entity.js';
-import { TaskUserModel } from './task-user.model.js';
+import { TaskUserEntity } from './task-user.entity';
+import { TaskUserModel } from './task-user.model';
 
 @Injectable()
 export class TaskUserRepository implements CRUDRepository<TaskUserEntity, string, User> {
