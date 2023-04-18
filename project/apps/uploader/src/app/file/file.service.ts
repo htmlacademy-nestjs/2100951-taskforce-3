@@ -28,7 +28,6 @@ export class FileService {
     const { uploadDirectory } = this.applicationConfig;
     const subDirectory = `${year}/${month}`;
 
-    const filename = crypto.randomUUID();
     const uuid = crypto.randomUUID();
     const fileExtension = extension(file.mimetype);
     const hashName = `${uuid}.${fileExtension}`;
