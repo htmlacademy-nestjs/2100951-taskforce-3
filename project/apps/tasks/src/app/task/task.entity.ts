@@ -13,7 +13,6 @@ export class TaskEntity implements Task {
   public city: City;
   public status: TaskStatus;
   public userId: string;
-  public comments?: Comment[];
 
   constructor(task: Task) {
     this.fillEntity(task);
@@ -22,7 +21,6 @@ export class TaskEntity implements Task {
   public toObject() {
     return {...this,
       categories: [...this.categories],
-      comments: [...this.comments],
     };
   }
 
@@ -39,6 +37,5 @@ export class TaskEntity implements Task {
     this.city = task.city;
     this.status = task.status;
     this.userId = task.userId;
-    this.comments = [];
   }
 }

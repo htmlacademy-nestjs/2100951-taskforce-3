@@ -1,7 +1,9 @@
 import { Comment } from '@project/shared/app-types';
 
 export class TaskCommentEntity implements Comment {
-  public _id: string;
+  public _id?: string;
+  public createdAt: Date;
+  public userId: string;
   public message: string;
   public taskId: string;
 
@@ -15,6 +17,8 @@ export class TaskCommentEntity implements Comment {
 
   public fillEntity(taskComment: Comment) {
     this._id = taskComment._id;
+    this.createdAt = taskComment.createdAt;
+    this.userId = taskComment.userId;
     this.message = taskComment.message;
     this.taskId = taskComment.taskId;
   }

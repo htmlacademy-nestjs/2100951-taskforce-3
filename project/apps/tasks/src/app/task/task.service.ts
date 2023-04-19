@@ -7,13 +7,20 @@ import { TaskEntity } from './task.entity';
 @Injectable()
 export class TaskService {
   constructor(
-    private readonly taskRepository: TaskMemoryRepository
-  ) {}
+    private readonly taskRepository: TaskMemoryRepository,
+ ) { }
 
   public async createTask(dto: CreateTaskDto) {
     const task = {
       ...dto,
-      status: TaskStatus .New,
+      categoryId: 1,
+      price: dto.price ?? 0,
+      deadline: dto.deadline ?? null,
+      image: dto.image ?? '',
+      address: dto.address ?? '',
+      tags: dto.tags ?? [],
+      userId: '',
+      status: TaskStatus.New,
     }
 
     const taskEntity = new TaskEntity(task);

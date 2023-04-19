@@ -1,6 +1,6 @@
 import { Expose } from 'class-transformer';
 import { ApiProperty } from '@nestjs/swagger';
-import { Category, City, Comment } from '@project/shared/app-types';
+import { Category, City } from '@project/shared/app-types';
 
 export class TaskRdo {
   @ApiProperty({
@@ -86,11 +86,4 @@ export class TaskRdo {
   })
   @Expose()
   public userId: string;
-
-  @ApiProperty({
-    description: 'Comments',
-    example: 'lalala'
-  })
-  @Expose()
-  public comments?: Comment[];
 }

@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Category, City, Comment } from '@project/shared/app-types';
+import { Category, City } from '@project/shared/app-types';
 
 export class CreateTaskDto {
   @ApiProperty({
@@ -61,10 +61,4 @@ export class CreateTaskDto {
     example: '12345',
   })
   public userId: string;
-
-  @ApiProperty({
-    description: 'Comments',
-    example: 'lalala',
-  })
-  public comments?: Comment[];
 }

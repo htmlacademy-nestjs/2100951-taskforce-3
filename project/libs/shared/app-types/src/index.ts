@@ -6,6 +6,5 @@ export * from './lib/comment.interface';
 export * from './lib/review.interface';
 export * from './lib/city.enum';
 export * from './lib/category.interface';
-export * from './lib/response.interface';
 export * from './lib/file.interface';
 export * from './lib/token-payload.interface';
