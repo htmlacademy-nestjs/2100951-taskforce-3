@@ -1,1 +1,1 @@
-export * from './lib/shared-shared-pipes.module';
+export * from './lib/mongoid-validation.pipe';

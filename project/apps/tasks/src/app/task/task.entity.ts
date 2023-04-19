@@ -12,7 +12,7 @@ export class TaskEntity implements Task {
   public tags?: string[];
   public city: City;
   public status: TaskStatus;
-  userId: string;
+  public userId: string;
 
   constructor(task: Task) {
     this.fillEntity(task);
