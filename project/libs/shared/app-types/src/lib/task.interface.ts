@@ -6,7 +6,7 @@ export interface Task {
     id?: string;
     title: string;
     details: string;
-    category: Category;
+    categories: Category[];
     price?: number;
     deadline?: Date;
     image?: string;

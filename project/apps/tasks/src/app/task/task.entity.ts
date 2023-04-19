@@ -4,7 +4,7 @@ export class TaskEntity implements Task {
   public id: string;
   public title: string;
   public details: string;
-  public category: Category;
+  public categories: Category[];
   public price?: number;
   public deadline?: Date;
   public image?: string;
@@ -13,20 +13,24 @@ export class TaskEntity implements Task {
   public city: City;
   public status: TaskStatus;
   public userId: string;
+  public comments?: Comment[];
 
   constructor(task: Task) {
     this.fillEntity(task);
   }
 
   public toObject() {
-    return {...this};
+    return {...this,
+      categories: [...this.categories],
+      comments: [...this.comments],
+    };
   }
 
   public fillEntity(task: Task) {
     this.id = task.id;
     this.title = task.title;
     this.details = task.details;
-    this.category = task.category;
+    this.categories = [...task.categories];
     this.price = task.price;
     this.deadline = task.deadline;
     this.image = task.image;
@@ -34,6 +38,7 @@ export class TaskEntity implements Task {
     this.tags = task.tags;
     this.city = task.city;
     this.status = task.status;
-    this.userId = task.userId
+    this.userId = task.userId;
+    this.comments = [];
   }
 }
