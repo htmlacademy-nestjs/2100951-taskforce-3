@@ -5,7 +5,7 @@ import { CategoryRdo } from './rdo/category.rdo';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
 
-@Controller('categories')
+@Controller('category')
 export class TaskCategoryController {
   constructor(
     private readonly taskCategoryService: TaskCategoryService
@@ -19,8 +19,8 @@ export class TaskCategoryController {
 
   @Get('/')
   async index() {
-    const categories = await this.taskCategoryService.getCategories();
-    return fillObject(CategoryRdo, categories);
+    const category = await this.taskCategoryService.getCategories();
+    return fillObject(CategoryRdo, category);
   }
 
   @Post('/')

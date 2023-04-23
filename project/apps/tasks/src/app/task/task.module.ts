@@ -1,10 +1,13 @@
 import { Module } from '@nestjs/common';
-import { TaskMemoryRepository } from './task-memory.repository';
+import { TaskRepository } from './task.repository';
 import { TaskController } from './task.controller';
 import { TaskService } from './task.service';
+import { TaskCategoryModule } from '../task-category/task-category.module.js';
 
 @Module({
+  imports: [TaskCategoryModule],
   controllers: [TaskController],
-  providers: [TaskService, TaskMemoryRepository]
+  providers: [TaskService, TaskRepository],
+  exports: [TaskRepository]
 })
-export class TaskModule {}
+export class TaskModule { }

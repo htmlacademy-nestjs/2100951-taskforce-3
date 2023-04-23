@@ -6,8 +6,8 @@ import { TaskStatus } from "./task-status.enum.js";
 export interface Task {
     id?: string;
     title: string;
-    details: string;
-    categories: Category[];
+    description: string;
+    category: Category[];
     price?: number;
     deadline?: Date;
     image?: string;
@@ -17,4 +17,5 @@ export interface Task {
     status?: TaskStatus;
     userId: string;
     review?: Review;
+    comments?: Comment[]
 }

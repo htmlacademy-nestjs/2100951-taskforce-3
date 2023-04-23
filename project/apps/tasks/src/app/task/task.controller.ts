@@ -1,9 +1,10 @@
-import { Body, Controller, Post, Get, Param, HttpStatus, Delete} from '@nestjs/common';
+import { Body, Controller, Post, Get, Param, HttpStatus, Delete, Query} from '@nestjs/common';
 import { TaskService } from './task.service';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { fillObject } from '@project/util/util-core';
 import { TaskRdo } from './rdo/task.rdo';
 import { ApiTags, ApiResponse } from '@nestjs/swagger';
+import { TaskQuery } from './query/task.query.js';
 
 @ApiTags('tasks')
 @Controller('tasks')
@@ -37,11 +38,11 @@ export class TaskController {
     description: 'Task with this ID does not exist'
   })
   @Get(':id')
-  public async show(@Param('id') id: string) {
+  public async show(@Param('id') id: number) {
     const existTask = await this.taskService.getTask(id);
     return fillObject(TaskRdo, existTask);
   }
-
+  
   @ApiResponse({
     status: HttpStatus.NO_CONTENT,
     description: 'The task has been successfully deleted'
@@ -55,7 +56,18 @@ export class TaskController {
     description: 'The user does not have enough rights to delete the task'
   })
   @Delete(':id')
-  public async delete(@Param('id') id: string) {
+  public async delete(@Param('id') id: number) {
     this.taskService.deleteTask(id);
+  }
+
+  @ApiResponse({
+    type: TaskRdo,
+    status: HttpStatus.OK,
+    description: 'Tasks found'
+  })
+  @Get('/')
+  async index(@Query() query: TaskQuery) {
+    const tasks = await this.taskService.getTasks(query);
+    return fillObject(TaskRdo, tasks);
   }
 }

@@ -1,26 +1,19 @@
 import { Injectable } from '@nestjs/common';
-import { TaskStatus } from '@project/shared/app-types';
+import { Task } from '@project/shared/app-types';
 import { CreateTaskDto } from './dto/create-task.dto';
-import { TaskMemoryRepository } from './task-memory.repository';
 import { TaskEntity } from './task.entity';
+import { TaskQuery } from './query/task.query.js';
+import { TaskRepository } from './task.repository.js';
 
 @Injectable()
 export class TaskService {
   constructor(
-    private readonly taskRepository: TaskMemoryRepository,
+    private readonly taskRepository: TaskRepository,
  ) { }
 
-  public async createTask(dto: CreateTaskDto) {
+   async createTask(dto: CreateTaskDto): Promise<Task> {
     const task = {
       ...dto,
-      categoryId: 1,
-      price: dto.price ?? 0,
-      deadline: dto.deadline ?? null,
-      image: dto.image ?? '',
-      address: dto.address ?? '',
-      tags: dto.tags ?? [],
-      userId: '',
-      status: TaskStatus.New,
     }
 
     const taskEntity = new TaskEntity(task);
@@ -29,11 +22,15 @@ export class TaskService {
       .create(taskEntity);
   }
 
-  public async getTask(id: string) {
+   async getTask(id: number) {
     return this.taskRepository.findById(id);
   }
 
-  public async deleteTask(id: string) {
+  async getTasks(query: TaskQuery): Promise<Task[]> {
+    return this.taskRepository.find(query);
+  }
+
+   async deleteTask(id: number) {
     this.taskRepository.destroy(id);
   }
 }

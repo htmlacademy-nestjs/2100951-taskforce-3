@@ -18,18 +18,18 @@ export class TaskRdo {
   public title: string;
 
   @ApiProperty({
-    description: 'Task details',
+    description: 'Task description',
     example: 'Come up with a title for the article'
   })
   @Expose()
-  public details: string;
+  public description: string;
 
   @ApiProperty({
     description: 'Task category',
     example: 'service'
   })
   @Expose()
-  public categories: Category[];
+  public category: Category[];
 
   @ApiProperty({
     description: 'Task price',

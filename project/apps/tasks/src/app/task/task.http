@@ -4,10 +4,14 @@ Content-Type: application/json
 
 {
   "title": "Title for the article",
-  "details": "Come up with a title for the article",
+  "description": "Come up with a title for the article",
   "category": "service",
   "city": "Moscow"
 }
+
+###
+# Get all posts and filtres
+GET http://localhost:3333/api/posts?sortDirection=desc&category=1,2&limit=2&page=1 HTTP/1.1
 
 ###
 

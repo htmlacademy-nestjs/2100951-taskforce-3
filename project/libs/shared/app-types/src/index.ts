@@ -8,3 +8,5 @@ export * from './lib/city.enum';
 export * from './lib/category.interface';
 export * from './lib/file.interface';
 export * from './lib/token-payload.interface';
+export * from './lib/sort-order.enum';
+export * from './lib/sort-type.enum';
