@@ -22,4 +22,18 @@ export class TaskCommentRdo {
   })
   @Expose()
   public taskId: string;
+
+  @ApiProperty({
+    description: 'User ID',
+    example: '234'
+  })
+  @Expose()
+  public userId: string;
+
+  @ApiProperty({
+    description: 'CreatedAt',
+    example: '2023-12-07'
+  })
+  @Expose()
+  public createdAt: Date;
 }

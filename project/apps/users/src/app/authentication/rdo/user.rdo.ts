@@ -48,7 +48,7 @@ export class UserRdo {
 
   @ApiProperty({
     description: 'User city',
-    example: 'Moskow'
+    example: 'Moscow'
   })
   @Expose()
   public city: City;

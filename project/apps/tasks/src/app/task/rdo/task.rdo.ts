@@ -1,6 +1,6 @@
 import { Expose } from 'class-transformer';
 import { ApiProperty } from '@nestjs/swagger';
-import { City } from '@project/shared/app-types';
+import { Category, City } from '@project/shared/app-types';
 
 export class TaskRdo {
   @ApiProperty({
@@ -18,18 +18,18 @@ export class TaskRdo {
   public title: string;
 
   @ApiProperty({
-    description: 'Task details',
+    description: 'Task description',
     example: 'Come up with a title for the article'
   })
   @Expose()
-  public details: string;
+  public description: string;
 
   @ApiProperty({
     description: 'Task category',
     example: 'service'
   })
   @Expose()
-  public category: string;
+  public category: Category[];
 
   @ApiProperty({
     description: 'Task price',
