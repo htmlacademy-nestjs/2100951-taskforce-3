@@ -11,12 +11,6 @@ export class TaskRepository implements CRUDRepository<TaskEntity, number, Task> 
 
   public async create(item: TaskEntity): Promise<Task> {
     const entityData = item.toObject();
-//  Короче не знаю, что ему нужно уже, пишет: Свойство "category" отсутствует в типе
-//  "import("c:/Users/User/Downloads/projects/2100951-taskforce-3/project/node_modules/.prisma/client/index").Task" 
-//  и является обязательным в типе 
-//  "import("c:/Users/User/Downloads/projects/2100951-taskforce-3/project/libs/shared/app-types/src/lib/task.interface").Task".ts(2741)
-// task.interface.ts(10, 5): Здесь объявлен "category
-
     return await this.prisma.task.create({
       data: {
         ...entityData,
@@ -59,7 +53,7 @@ export class TaskRepository implements CRUDRepository<TaskEntity, number, Task> 
       where: {
         category: {
           is: {
-            categoryId: category.category,
+            categoryId: category,
         },
       },
         city: {
