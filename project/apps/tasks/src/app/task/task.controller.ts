@@ -4,7 +4,7 @@ import { CreateTaskDto } from './dto/create-task.dto';
 import { fillObject } from '@project/util/util-core';
 import { TaskRdo } from './rdo/task.rdo';
 import { ApiTags, ApiResponse } from '@nestjs/swagger';
-import { TaskQuery } from './query/task.query.js';
+import { TaskQuery } from './query/task.query';
 
 @ApiTags('tasks')
 @Controller('tasks')
