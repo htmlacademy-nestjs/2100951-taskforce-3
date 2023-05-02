@@ -10,7 +10,7 @@ import { JwtService } from '@nestjs/jwt';
 import { User } from '@project/shared/app-types';
 import { jwtConfig } from '@project/config/config-users';
 import { createJWTPayload } from '@project/util/util-core';
-import { RefreshTokenService } from '../refresh-token/refresh-token.service.js';
+import { RefreshTokenService } from '../refresh-token/refresh-token.service';
 
 @Injectable()
 export class AuthenticationService {
