@@ -50,7 +50,7 @@ export class TaskUserModel extends Document implements User {
         required: true,
         type: String,
         enum: City,
-        default: City.Moscow,
+        default: 'Moscow',
     })
     public city: City;
 }
