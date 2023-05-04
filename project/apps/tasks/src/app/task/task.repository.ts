@@ -14,65 +14,58 @@ export class TaskRepository implements CRUDRepository<TaskEntity, number, Task> 
     return await this.prisma.task.create({
       data: {
         ...entityData,
-        comments: {
-          create: []
-        },
-        category: {
-          create: entityData.category,
-        },
       },
       include: {
-        comments: true,
         category: true,
       }
     });
-  }
+}
 
-  public async destroy(taskId: number): Promise<void> {
-    await this.prisma.task.delete({
-      where: {
-        taskId,
-      }
-    });
-  }
+  public async destroy(taskId: number): Promise < void> {
+  await this.prisma.task.delete({
+    where: {
+      taskId,
+    }
+  });
+}
 
-  public async findById(taskId: number): Promise<Task | null> {
-    return this.prisma.task.findFirst({
-      where: {
-        taskId
-      },
-      include: {
-        comments: true,
-        category: true,
-      }
-    });
-  }
+  public async findById(taskId: number): Promise < Task | null > {
+  return this.prisma.task.findFirst({
+    where: {
+      taskId
+    },
+    include: {
+      comments: true,
+      category: true,
+    }
+  });
+}
 
-  public async find({limit, category, city, sortDirection, page}: TaskQuery): Promise<Task[]> {
-    return await this.prisma.task.findMany({
-      where: {
-        category: {
-          is: {
-            categoryId: category,
+  public async find({ limit, category, city, sortDirection, page }: TaskQuery): Promise < Task[] > {
+  return await this.prisma.task.findMany({
+    where: {
+      category: {
+        is: {
+          categoryId: category,
         },
       },
-        city: {
-          equals: city,
-        }
-      },
-      take: limit,
-      include: {
-        comments: true,
-        category: true,
-      },
-      orderBy: [
-        { createdAt: sortDirection }
-      ],
-      skip: page > 0 ? limit * (page - 1) : undefined,
-    });
-  }
+      city: {
+        equals: city,
+      }
+    },
+    take: limit,
+    include: {
+      comments: true,
+      category: true,
+    },
+    orderBy: [
+      { createdAt: sortDirection }
+    ],
+    skip: page > 0 ? limit * (page - 1) : undefined,
+  });
+}
 
-  public update(_id: number, _item: TaskEntity): Promise<Task> {
-    return Promise.resolve(undefined);
-  }
+  public update(taskId: number, _item: TaskEntity): Promise < Task > {
+  return Promise.resolve(undefined);
+}
 }

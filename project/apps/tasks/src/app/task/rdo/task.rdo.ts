@@ -1,6 +1,7 @@
 import { Expose } from 'class-transformer';
 import { ApiProperty } from '@nestjs/swagger';
-import { Category, City } from '@project/shared/app-types';
+import {  City } from '@project/shared/app-types';
+import { Category } from '@prisma/client';
 
 export class TaskRdo {
   @ApiProperty({
@@ -8,7 +9,7 @@ export class TaskRdo {
     example: '517854'
   })
   @Expose({name: '_id'})
-  public id: string;
+  public taskId: number;
 
   @ApiProperty({
     description: 'Task title',
@@ -29,7 +30,7 @@ export class TaskRdo {
     example: 'service'
   })
   @Expose()
-  public category: Category[];
+  public category: Category;
 
   @ApiProperty({
     description: 'Task price',

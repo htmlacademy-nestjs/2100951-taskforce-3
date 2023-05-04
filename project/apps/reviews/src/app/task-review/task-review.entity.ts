@@ -3,7 +3,7 @@ import { Review } from '@project/shared/app-types';
 export class TaskReviewEntity implements Review {
   public _id: string;
   public message: string;
-  public taskId: string;
+  public taskId: number;
   public rating: number;
 
   constructor(taskReview: Review) {

@@ -12,8 +12,8 @@ export class TaskCategoryController {
   ) {}
 
   @Get('/:id')
-  async show(@Param('id') id: number) {
-    const existCategory = await this.taskCategoryService.getCategory(id);
+  async show(@Param('id') categoryId: number) {
+    const existCategory = await this.taskCategoryService.getCategory(categoryId);
     return fillObject(CategoryRdo, existCategory);
   }
 

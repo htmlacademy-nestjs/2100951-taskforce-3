@@ -8,10 +8,10 @@ export class TaskQuery {
   @IsNumber()
   @IsOptional()
   public limit = DEFAULT_TASK_COUNT_LIMIT;
-
+  
   @Transform(({ value } ) => value.categoryId)
   @IsOptional()
-  public category: Category[];
+  public category: Category;
 
   @IsOptional()
   public city: City;

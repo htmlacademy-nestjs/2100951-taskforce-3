@@ -1,10 +1,10 @@
 import { TaskStatus, Task, City, Category } from '@project/shared/app-types';
 
 export class TaskEntity implements Task {
-  public id: string;
+  public taskId: number;
   public title: string;
   public description: string;
-  public category: Category[];
+  public category: Category;
   public price?: number;
   public deadline?: Date;
   public image?: string;
@@ -20,17 +20,18 @@ export class TaskEntity implements Task {
   }
 
   public toObject() {
-    return {...this,
-      category: [...this.category],
+    return {
+      ...this,
+      category: this.category,
       comments: [...this.comments]
     };
   }
 
   public fillEntity(task: Task) {
-    this.id = task.id;
+    this.taskId = task.taskId;
     this.title = task.title;
     this.description = task.description;
-    this.category = [...task.category];
+    this.category = task.category;
     this.price = task.price;
     this.deadline = task.deadline;
     this.image = task.image;

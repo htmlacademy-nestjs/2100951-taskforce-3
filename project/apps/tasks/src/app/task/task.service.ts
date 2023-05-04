@@ -22,15 +22,15 @@ export class TaskService {
       .create(taskEntity);
   }
 
-   async getTask(id: number) {
-    return this.taskRepository.findById(id);
+   async getTask(taskId: number) {
+    return this.taskRepository.findById(taskId);
   }
 
   async getTasks(query: TaskQuery): Promise<Task[]> {
     return this.taskRepository.find(query);
   }
 
-   async deleteTask(id: number) {
-    this.taskRepository.destroy(id);
+   async deleteTask(taskId: number) {
+    this.taskRepository.destroy(taskId);
   }
 }

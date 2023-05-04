@@ -21,7 +21,7 @@ export class ReviewRdo {
     example: '234'
   })
   @Expose()
-  taskId: string;
+  taskId: number;
 
   @ApiProperty({
     description: 'Rating by the customer of the completed task',

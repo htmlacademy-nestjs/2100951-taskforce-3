@@ -21,7 +21,7 @@ export class TaskCommentRdo {
     example: '234'
   })
   @Expose()
-  public taskId: string;
+  public taskId: number;
 
   @ApiProperty({
     description: 'User ID',

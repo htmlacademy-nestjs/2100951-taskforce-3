@@ -4,10 +4,10 @@ import { Review } from "./review.interface.js";
 import { TaskStatus } from "./task-status.enum.js";
 
 export interface Task {
-    id?: string;
+    taskId?: number;
     title: string;
     description: string;
-    category: Category[];
+    category: Category;
     price?: number;
     deadline?: Date;
     image?: string;
