@@ -1,6 +1,6 @@
 import { Expose } from 'class-transformer';
 import { ApiProperty } from '@nestjs/swagger';
-import {  City } from '@project/shared/app-types';
+import {  CityType } from '@project/shared/app-types';
 import { Category } from '@prisma/client';
 
 export class TaskRdo {
@@ -72,7 +72,7 @@ export class TaskRdo {
     example: 'Mosckow'
   })
   @Expose()
-  public city: City;
+  public city: CityType;
 
   @ApiProperty({
     description: 'Task status',
@@ -87,4 +87,18 @@ export class TaskRdo {
   })
   @Expose()
   public userId: string;
+
+  @ApiProperty({
+    description: 'Дата создания.',
+    example: '2023-03-27'
+  })
+  @Expose()
+  public createdAt: Date;
+
+  @ApiProperty({
+    description: 'Дата обновления.',
+    example: '2023-03-27'
+  })
+  @Expose()
+  public publishAt: Date;
 }

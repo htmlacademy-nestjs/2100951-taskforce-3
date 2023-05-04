@@ -1,7 +1,7 @@
 import {  IsIn, IsNumber, IsOptional } from 'class-validator';
 import { Transform } from 'class-transformer';
 import { DEFAULT_TASK_COUNT_LIMIT, DEFAULT_SORT_DIRECTION } from '../task.constant';
-import { Category, City } from '@project/shared/app-types';
+import { Category, City, CityType } from '@project/shared/app-types';
 
 export class TaskQuery {
   @Transform(({ value } ) => +value || DEFAULT_TASK_COUNT_LIMIT)
@@ -14,7 +14,7 @@ export class TaskQuery {
   public category: Category;
 
   @IsOptional()
-  public city: City;
+  public city: CityType;
 
   @IsIn(['asc', 'desc'])
   @IsOptional()

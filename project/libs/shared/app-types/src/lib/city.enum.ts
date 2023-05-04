@@ -1,5 +1,7 @@
-export enum City {
-    Moscow = 'Moscow',
-    SaintPetersburg = 'Saint Petersburg',
-    Vladivostok = 'Vladivostok'
-}
+export const City = {
+    Moscow: 'Moscow',
+    SaintPetersburg: 'SaintPetersburg',
+    Vladivostok: 'Vladivostok'
+  };
+
+  export type CityType = keyof typeof City

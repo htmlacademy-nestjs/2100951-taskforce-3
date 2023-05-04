@@ -35,7 +35,6 @@ export class TaskRepository implements CRUDRepository<TaskEntity, number, Task> 
       taskId
     },
     include: {
-      comments: true,
       category: true,
     }
   });

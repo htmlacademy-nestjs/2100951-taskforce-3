@@ -1,4 +1,4 @@
-import { TaskStatus, Task, City, Category } from '@project/shared/app-types';
+import { Task, Category, CityType, TaskStatusType } from '@project/shared/app-types';
 
 export class TaskEntity implements Task {
   public taskId: number;
@@ -10,10 +10,12 @@ export class TaskEntity implements Task {
   public image?: string;
   public address?: string;
   public tags?: string[];
-  public city: City;
-  public status: TaskStatus;
+  public city: CityType;
+  public status: TaskStatusType;
   public userId: string;
   public comments?: Comment[];
+  public createdAt: Date;
+  public publishAt: Date;
 
   constructor(task: Task) {
     this.fillEntity(task);
@@ -41,5 +43,7 @@ export class TaskEntity implements Task {
     this.status = task.status;
     this.userId = task.userId;
     this.comments = [];
+    this.createdAt = task.createdAt;
+    this.publishAt = task.publishAt;
   }
 }

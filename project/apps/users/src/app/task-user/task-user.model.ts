@@ -1,6 +1,6 @@
 import { Document } from 'mongoose';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { City, User, UserRole } from '@project/shared/app-types';
+import { City, CityType, User, UserRole } from '@project/shared/app-types';
 
 @Schema({
     collection: 'users',
@@ -52,7 +52,7 @@ export class TaskUserModel extends Document implements User {
         enum: City,
         default: 'Moscow',
     })
-    public city: City;
+    public city: CityType;
 }
 
 export const TaskUserSchema = SchemaFactory.createForClass(TaskUserModel);
