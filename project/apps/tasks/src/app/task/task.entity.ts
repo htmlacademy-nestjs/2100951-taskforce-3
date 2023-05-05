@@ -1,4 +1,4 @@
-import { Task, Category, CityType, TaskStatusType } from '@project/shared/app-types';
+import { Task, Category, CityType, TaskStatusType, Comment } from '@project/shared/app-types';
 
 export class TaskEntity implements Task {
   public taskId: number;

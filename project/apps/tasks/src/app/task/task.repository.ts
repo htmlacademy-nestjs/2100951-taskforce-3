@@ -11,13 +11,27 @@ export class TaskRepository implements CRUDRepository<TaskEntity, number, Task> 
 
   public async create(item: TaskEntity): Promise<Task> {
     const entityData = item.toObject();
+    const {taskId, category, comments, ...content} = entityData;
+    
     return await this.prisma.task.create({
       data: {
-        ...entityData,
+        ...content,
+        category: {
+          connectOrCreate: {
+            create: {
+              title: category.title
+            },
+            where: {
+              categoryId: category.categoryId
+            }
+          }
+        },
+        comments: {
+          createMany: {
+            data: comments.map(({_id, ...data}) => data)
+          }
+        }
       },
-      include: {
-        category: true,
-      }
     });
 }
 
@@ -40,12 +54,12 @@ export class TaskRepository implements CRUDRepository<TaskEntity, number, Task> 
   });
 }
 
-  public async find({ limit, category, city, sortDirection, page }: TaskQuery): Promise < Task[] > {
+  public async find({ limit, categoryId, city, sortDirection, page }: TaskQuery): Promise < Task[] > {
   return await this.prisma.task.findMany({
     where: {
       category: {
         is: {
-          categoryId: category,
+          categoryId: categoryId,
         },
       },
       city: {

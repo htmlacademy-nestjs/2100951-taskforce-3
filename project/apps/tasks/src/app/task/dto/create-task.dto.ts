@@ -35,7 +35,7 @@ export class CreateTaskDto {
 
   @ApiProperty({
     description: 'Task deadline',
-    example: '19.04.2025'
+    example: '2023-03-30'
   })
   @IsISO8601({}, { message: TASK_DUEDATE_NOT_VALID })
   public deadline?: Date;
@@ -72,4 +72,16 @@ export class CreateTaskDto {
     example: '12345',
   })
   public userId: string;
+
+  @ApiProperty({
+    description: 'Дата создания.',
+    example: '2023-03-27'
+  })
+  public createdAt: Date;
+
+  @ApiProperty({
+    description: 'Дата обновления.',
+    example: '2023-03-27'
+  })
+  public publishAt: Date;
 }

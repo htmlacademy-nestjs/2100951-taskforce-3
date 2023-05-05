@@ -1,5 +1,6 @@
 import { Category } from "./category.interface.js";
 import { CityType } from "./city.enum.js";
+import { Comment } from "./comment.interface.js";
 import { Review } from "./review.interface.js";
 import { TaskStatusType } from "./task-status.enum.js";
 
