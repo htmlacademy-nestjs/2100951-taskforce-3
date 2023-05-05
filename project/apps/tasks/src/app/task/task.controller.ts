@@ -38,8 +38,8 @@ export class TaskController {
     description: 'Task with this ID does not exist'
   })
   @Get(':id')
-  public async show(@Param('id') id: number) {
-    const existTask = await this.taskService.getTask(id);
+  public async show(@Param('id') taskId: number) {
+    const existTask = await this.taskService.getTask(taskId);
     return fillObject(TaskRdo, existTask);
   }
   
@@ -56,8 +56,8 @@ export class TaskController {
     description: 'The user does not have enough rights to delete the task'
   })
   @Delete(':id')
-  public async delete(@Param('id') id: number) {
-    this.taskService.deleteTask(id);
+  public async delete(@Param('id') taskId: number) {
+    this.taskService.deleteTask(taskId);
   }
 
   @ApiResponse({

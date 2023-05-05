@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Category, City } from '@project/shared/app-types';
+import {  Category, CityType } from '@project/shared/app-types';
 import { Length, IsString, IsPositive, IsISO8601 } from 'class-validator';
 import { minTitleLength, maxTitleLength, TASK_TITLE_LENGTH, minDescriptionLength, maxDescriptionLength, TASK_DESCRIPTION_LENGTH, TASK_DUEDATE_NOT_VALID, minAddressLength, maxAddressLength, TASK_ADDRESS_LENGTH } from '../task.constant';
 
@@ -24,7 +24,7 @@ export class CreateTaskDto {
     description: 'Task category',
     example: 'service'
   })
-  public category: Category[];
+  public category: Category;
 
   @ApiProperty({
     description: 'Task price',
@@ -35,7 +35,7 @@ export class CreateTaskDto {
 
   @ApiProperty({
     description: 'Task deadline',
-    example: '19.04.2025'
+    example: '2023-03-30'
   })
   @IsISO8601({}, { message: TASK_DUEDATE_NOT_VALID })
   public deadline?: Date;
@@ -65,11 +65,23 @@ export class CreateTaskDto {
     description: 'Task city',
     example: 'Moscow',
   })
-  public city: City;
+  public city: CityType;
 
   @ApiProperty({
     description: 'User Id',
     example: '12345',
   })
   public userId: string;
+
+  @ApiProperty({
+    description: 'Дата создания.',
+    example: '2023-03-27'
+  })
+  public createdAt: Date;
+
+  @ApiProperty({
+    description: 'Дата обновления.',
+    example: '2023-03-27'
+  })
+  public publishAt: Date;
 }

@@ -11,7 +11,7 @@ export class CreateCommentDto {
     description: 'Task ID',
     example: '156165'
   })
-  public taskId: string;
+  public taskId: number;
 
   @ApiProperty({
     description: 'User ID',

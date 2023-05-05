@@ -12,3 +12,6 @@ export * from './lib/sort-order.enum';
 export * from './lib/sort-type.enum';
 export * from './lib/subscriber.interface';
 export * from './lib/rabbit-routing.enum';
+export * from './lib/request-with.user';
+export * from './lib/refresh-token-payload.interface';
+export * from './lib/token.interface';

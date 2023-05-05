@@ -11,7 +11,7 @@ export class CreateReviewDto {
     description: 'Task ID',
     example: '234'
   })
-  public taskId: string;
+  public taskId: number;
 
   @ApiProperty({
     description: 'Rating by the customer of the completed task',

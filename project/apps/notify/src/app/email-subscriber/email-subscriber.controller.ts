@@ -3,7 +3,7 @@ import { EmailSubscriberService } from './email-subscriber.service';
 import { Controller } from '@nestjs/common';
 import { RabbitSubscribe } from '@golevelup/nestjs-rabbitmq';
 import { RabbitRouting } from '@project/shared/app-types';
-import { MailService } from '../mail/mail.service.js';
+import { MailService } from '../mail/mail.service';
 
 @Controller()
 export class EmailSubscriberController {

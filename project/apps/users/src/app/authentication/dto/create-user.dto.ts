@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { City, UserRole } from '@project/shared/app-types';
+import { CityType, UserRole } from '@project/shared/app-types';
 import { IsEmail, IsISO8601, IsString } from 'class-validator';
 import { AUTH_USER_EMAIL_NOT_VALID, AUTH_USER_DATE_BIRTH_NOT_VALID } from '../authentication.constant';
 
@@ -45,7 +45,7 @@ export class CreateUserDto {
     example: 'Moscow',
   })
   @IsString()
-  public city: City;
+  public city: CityType;
 
   @ApiProperty({
     description: 'User role',

@@ -1,4 +1,4 @@
-import { City } from './city.enum.js';
+import { CityType } from './city.enum.js';
 import {UserRole} from './user-role.enum';
 
 export interface User {
@@ -10,5 +10,5 @@ export interface User {
   avatar: string;
   passwordHash: string;
   role: UserRole;
-  city: City;
+  city: CityType;
 }

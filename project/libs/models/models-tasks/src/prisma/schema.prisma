@@ -12,23 +12,24 @@ datasource db {
 }
 
 model Task {
-  taskId         Int        @id @default(autoincrement()) @map("task_id")
-  title          String     @default("")
-  description    String     @default("")
-  category       Category   @relation(fields: [categoryId], references: [categoryId])
-  categoryId     Int        @map("category_id")
-  price          Int?
-  deadline       DateTime?
-  image          String?    @default("")
-  address        String?    @default("")
-  tags           String[]
-  city           City
-  status         StatusTask
-  comments       Comment[]
-  response       Response?
-  createdAt      DateTime   @default(now()) @map("created_at")
-  publishAt      DateTime   @updatedAt @map("publish_at")
-  userId         String?    @map("user_id")
+  taskId      Int        @id @default(autoincrement()) @map("task_id")
+  title       String     @default("")
+  description String     @default("")
+  category    Category?  @relation(fields: [categoryId], references: [categoryId])
+  categoryId  Int        @map("category_id")
+  price       Int?
+  deadline    DateTime?
+  image       String?    @default("")
+  address     String?    @default("")
+  tags        String[]
+  city        City?
+  status      TaskStatus @default(New)
+  comments    Comment[]
+  review      Review?
+  createdAt   DateTime   @default(now()) @map("created_at")
+  publishAt   DateTime   @updatedAt @map("publish_at")
+  userId      String?    @map("user_id")
+
   @@map("tasks")
 }
 
@@ -36,6 +37,7 @@ model Category {
   categoryId Int    @id @default(autoincrement()) @map("category_id")
   title      String
   tasks      Task[]
+
   @@map("category")
 }
 
@@ -47,19 +49,26 @@ model Comment {
   taskId    Int      @map("task_id")
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
+
   @@map("comments")
 }
 
-model Response {
+model Review {
   responseId Int      @id @default(autoincrement()) @map("response_id")
   message    String   @default("")
   userId     String   @map("user_id")
   task       Task     @relation(fields: [taskId], references: [taskId], onDelete: Cascade, onUpdate: Cascade)
   taskId     Int      @unique @map("task_id")
-  rating Int
+  rating     Int
   createdAt  DateTime @default(now()) @map("created_at")
   updatedAt  DateTime @updatedAt @map("updated_at")
+
   @@map("responses")
+}
+
+enum UserRole {
+  Executor
+  Customer
 }
 
 enum City {
@@ -68,10 +77,10 @@ enum City {
   Vladivostok
 }
 
-enum StatusTask {
+enum TaskStatus {
   New
-  Cancelled
-  InProgress
+  Canceled
+  InWork
   Done
   Failed
 }

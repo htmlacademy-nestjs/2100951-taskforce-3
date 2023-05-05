@@ -16,19 +16,19 @@ export class TaskCategoryService {
     return this.taskCategoryRepository.create(categoryEntity);
   }
 
-  async deleteCategory(id: number): Promise<void> {
-    this.taskCategoryRepository.destroy(id);
+  async deleteCategory(categoryId: number): Promise<void> {
+    this.taskCategoryRepository.destroy(categoryId);
   }
 
-  async getCategory(id: number): Promise<Category> {
-    return this.taskCategoryRepository.findById(id);
+  async getCategory(categoryId: number): Promise<Category> {
+    return this.taskCategoryRepository.findById(categoryId);
   }
 
   async getCategories(): Promise<Category[]> {
     return this.taskCategoryRepository.find();
   }
 
-  async updateCategory(id: number, dto: UpdateCategoryDto): Promise<Category> {
-    return this.taskCategoryRepository.update(id, new TaskCategoryEntity(dto));
+  async updateCategory(categoryId: number, dto: UpdateCategoryDto): Promise<Category> {
+    return this.taskCategoryRepository.update(categoryId, new TaskCategoryEntity(dto));
   }
 }
