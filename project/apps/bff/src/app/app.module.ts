@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
-import { UsersController } from './users.controller.js';
-import { TaskController } from './task-controller.js';
-import { HTTP_CLIENT_TIMEOUT, HTTP_CLIENT_MAX_REDIRECTS } from './app.config.js';
+import { UsersController } from './users.controller';
+import { TaskController } from './task-controller';
+import { HTTP_CLIENT_TIMEOUT, HTTP_CLIENT_MAX_REDIRECTS } from './app.config';
 import { HttpModule } from '@nestjs/axios';
+import { CheckAuthGuard } from './guards/check-auth.guard';
 
 @Module({
   imports: [
@@ -15,6 +16,6 @@ import { HttpModule } from '@nestjs/axios';
     UsersController,
     TaskController,
   ],
-  providers: [],
+  providers: [CheckAuthGuard],
 })
 export class AppModule { }

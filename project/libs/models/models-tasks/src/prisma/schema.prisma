@@ -29,6 +29,7 @@ model Task {
   createdAt   DateTime   @default(now()) @map("created_at")
   publishAt   DateTime   @updatedAt @map("publish_at")
   userId      String?    @map("user_id")
+  executorId  String?    @map("executor_id")
 
   @@map("tasks")
 }

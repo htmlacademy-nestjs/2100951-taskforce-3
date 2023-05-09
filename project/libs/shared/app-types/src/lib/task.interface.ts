@@ -1,24 +1,22 @@
-import { Category } from "./category.interface.js";
-import { CityType } from "./city.enum.js";
-import { Comment } from "./comment.interface.js";
-import { Review } from "./review.interface.js";
-import { TaskStatusType } from "./task-status.enum.js";
+import { Comment } from "./comment.interface";
+import { Review } from "./review.interface";
 
 export interface Task {
     taskId?: number;
     title: string;
     description: string;
-    category?: Category;
+    categoryId?: number;
     price?: number;
     deadline?: Date;
     image?: string;
     address?:string;  
     tags?: string[];
-    city?: CityType;
-    status?: TaskStatusType;
+    city?: string;
+    status?: string;
     userId: string;
     createdAt: Date;
     publishAt: Date;
     review?: Review;
+    executorId?: string;
     comments?: Comment[]
 }

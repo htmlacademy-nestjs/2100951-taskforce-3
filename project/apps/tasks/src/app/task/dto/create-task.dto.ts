@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {  Category, CityType } from '@project/shared/app-types';
+import {  Category } from '@project/shared/app-types';
 import { Length, IsString, IsPositive, IsISO8601 } from 'class-validator';
 import { minTitleLength, maxTitleLength, TASK_TITLE_LENGTH, minDescriptionLength, maxDescriptionLength, TASK_DESCRIPTION_LENGTH, TASK_DUEDATE_NOT_VALID, minAddressLength, maxAddressLength, TASK_ADDRESS_LENGTH } from '../task.constant';
 
@@ -65,7 +65,7 @@ export class CreateTaskDto {
     description: 'Task city',
     example: 'Moscow',
   })
-  public city: CityType;
+  public city: string;
 
   @ApiProperty({
     description: 'User Id',

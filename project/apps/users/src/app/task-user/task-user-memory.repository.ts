@@ -1,6 +1,6 @@
 import { CRUDRepository } from '@project/util/util-types';
 import { User } from '@project/shared/app-types';
-import { TaskUserEntity } from './task-user.entity.js';
+import { TaskUserEntity } from './task-user.entity';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
