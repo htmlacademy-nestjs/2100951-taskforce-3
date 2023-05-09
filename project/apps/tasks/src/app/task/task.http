@@ -7,7 +7,7 @@ Content-Type: application/json
   "description": "Come up with a title for the article Come up with a title for the article Come up with a title for the article",
   "price": 1000,
   "address": "Komarovo, d.40",
-  "deadline": "18.01.2022",
+  "deadline": "18-01-2022",
   "category": "service",
   "city": "Moscow",
   "image": ""

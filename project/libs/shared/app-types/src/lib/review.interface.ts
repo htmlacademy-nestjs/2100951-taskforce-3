@@ -1,7 +1,8 @@
 export interface Review {
-    _id?: string;
+    id?: number;
     message: string;
     taskId: number;
+    userId: string;
     rating: number;
   }
   

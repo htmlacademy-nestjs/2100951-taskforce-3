@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { CRUDRepository } from '@project/util/util-types';
 import { TaskEntity } from './task.entity';
-import { Task } from '@project/shared/app-types';
+import { Task, UserRole } from '@project/shared/app-types';
 import { PrismaService } from '../prisma/prisma.service';
 import { TaskQuery } from './query/task.query';
+import { City, TaskStatus } from '@prisma/client';
 
 @Injectable()
 export class TaskRepository implements CRUDRepository<TaskEntity, number, Task> {
@@ -11,25 +12,23 @@ export class TaskRepository implements CRUDRepository<TaskEntity, number, Task> 
 
   public async create(item: TaskEntity): Promise<Task> {
     const entityData = item.toObject();
-    const {taskId, category, comments, ...content} = entityData;
-    
+  
     return await this.prisma.task.create({
       data: {
-        ...content,
-        category: {
-          connectOrCreate: {
-            create: {
-              title: category.title
-            },
-            where: {
-              categoryId: category.categoryId
-            }
-          }
-        },
+        title: entityData.title,
+        description: entityData.description,
+        categoryId: entityData.categoryId,
+        price: entityData.price,
+        deadline: entityData.deadline,
+        image: entityData.image,
+        address: entityData.address,
+        tags: entityData.tags,
+        city: entityData.city as City,
+        status: entityData.status as TaskStatus,
+        userId: entityData.userId,
+        executorId: entityData.executorId,
         comments: {
-          createMany: {
-            data: comments.map(({_id, ...data}) => data)
-          }
+          create: [],
         }
       },
     });
@@ -78,7 +77,46 @@ export class TaskRepository implements CRUDRepository<TaskEntity, number, Task> 
   });
 }
 
-  public update(taskId: number, _item: TaskEntity): Promise < Task > {
-  return Promise.resolve(undefined);
+  public update(taskId: number, item: TaskEntity): Promise < Task > {
+    return Promise.resolve(undefined);
+    }
+
+public async findMyTasks(role: UserRole, id: string, status?: TaskStatus): Promise<Task[]> {
+  let tasks: Task[];
+  if (role === UserRole.Сustomer) {
+    tasks = await this.prisma.task.findMany({
+      where: {
+        userId: id,
+        status,
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+  } else {
+    tasks = await this.prisma.task.findMany({
+      where: {
+        executorId: id,
+        status,
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+  }
+  return tasks.map((task) => ({
+    ...task,
+    commentsAmount: task.comments?.length || 0,
+  }));
+}
+
+public async countExecutorFailedTasks(userId: string): Promise<number> {
+  const failedTasks = await this.prisma.task.findMany({
+    where: {
+      status: 'Failed',
+      executorId: userId
+    }
+  });
+  return failedTasks.length;
 }
 }

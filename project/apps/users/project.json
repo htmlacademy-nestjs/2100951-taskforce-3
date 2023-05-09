@@ -15,6 +15,7 @@
         "main": "apps/users/src/main.ts",
         "tsConfig": "apps/users/tsconfig.app.json",
         "assets": ["apps/users/src/assets"],
+        "generatePackageJson": true,
         "isolatedConfig": true,
         "webpackConfig": "apps/users/webpack.config.js"
       },

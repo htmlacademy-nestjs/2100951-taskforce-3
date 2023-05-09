@@ -1,8 +1,8 @@
 import { HttpService } from '@nestjs/axios';
 import { Body, Controller, Post, Req, UseFilters } from '@nestjs/common';
-import { ApplicationServiceURL } from './app.config.js';
-import { LoginUserDto } from './dto/login-user.dto.js';
-import { AxiosExceptionFilter } from './filters/axios-exception.filter.js';
+import { ApplicationServiceURL } from './app.config';
+import { LoginUserDto } from './dto/login-user.dto';
+import { AxiosExceptionFilter } from './filters/axios-exception.filter';
 
 @Controller('users')
 @UseFilters(AxiosExceptionFilter)

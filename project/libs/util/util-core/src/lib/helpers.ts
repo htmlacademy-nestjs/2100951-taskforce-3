@@ -1,3 +1,4 @@
+import { Task, TaskStatus } from '@project/shared/app-types';
 import {plainToInstance, ClassConstructor} from 'class-transformer';
 
 export type DateTimeUnit = 's' | 'h' | 'd' | 'm' | 'y';
@@ -32,4 +33,15 @@ export function parseTime(time: string): TimeAndUnit {
   }
 
   return { value, unit }
+}
+
+export function sortByStatus(tasks: Task[]): Task[] {
+  const order = [TaskStatus.New, TaskStatus.Canceled, TaskStatus.InWork, TaskStatus.Done, TaskStatus.Failed];
+  const statusMap = TaskStatus;
+
+  return tasks.sort((a, b) => {
+      const aIndex = order.indexOf(statusMap[a.status]);
+      const bIndex = order.indexOf(statusMap[b.status]);
+      return aIndex - bIndex;
+    });
 }
