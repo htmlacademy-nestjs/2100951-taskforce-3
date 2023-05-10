@@ -101,4 +101,16 @@ export class TaskRdo {
   })
   @Expose()
   public publishAt: Date;
+
+  @ApiProperty({
+    description: 'Customer user id'
+  })
+  @Expose()
+  public customerId: string;
+
+  @ApiProperty({
+    description: 'Executer user id'
+  })
+  @Expose()
+  public executerId: string;
 }

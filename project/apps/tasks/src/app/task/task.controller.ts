@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Get, Param, HttpStatus, Delete, Query, Patch, Headers} from '@nestjs/common';
+import { Body, Controller, Post, Get, Param, HttpStatus, Delete, Query, Patch, Headers, UseGuards } from '@nestjs/common';
 import { TaskService } from './task.service';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { fillObject } from '@project/util/util-core';
@@ -9,13 +9,29 @@ import { TaskCommentQuery } from '../task-comment/query/task-comment.query';
 import { TaskCommentRdo } from '../task-comment/rdo/task-comment.rdo';
 import { UpdateTaskDto } from './dto/update-task.dto';
 import { CreateCommentDto } from '../task-comment/dto/create-comment.dto';
+import { JwtAuthGuard } from '../authentication/guards/jwt-auth.guard';
+import { NotifyService } from '../notify/notify.service';
+import { Roles } from './task.constant';
+import { UserRole } from '@project/shared/app-types';
 
 @ApiTags('tasks')
 @Controller('tasks')
 export class TaskController {
   constructor(
-    private readonly taskService: TaskService
-  ) {}
+    private readonly taskService: TaskService,
+    private readonly notifyService: NotifyService,
+  ) { }
+
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: 'Newsletter to subscribers'
+  })
+  @UseGuards(JwtAuthGuard)
+  @Get('/notify')
+  async sendNotifications() {
+    const tasks = await this.taskService.getUpdate();
+    await this.notifyService.sendNotifications({ ids: tasks.map((task) => task.taskId) });
+  }
 
   @ApiResponse({
     type: TaskRdo,
@@ -27,6 +43,8 @@ export class TaskController {
     description: 'User does not have enough rights to add a task'
   })
   @Post()
+  @UseGuards(JwtAuthGuard)
+  @Roles(UserRole.Сustomer)
   public async create(@Body() dto: CreateTaskDto) {
     const newTask = await this.taskService.createTask(dto);
     return fillObject(TaskRdo, newTask);
@@ -54,9 +72,10 @@ export class TaskController {
     description: 'The user is not authorized'
   })
   @Patch('/:id/status')
-  public async changeStatus(@Param('id') id: number, @Body() dto: UpdateTaskDto, @Headers('authorization') authorization?: string) {
-    const token = authorization?.split(' ')[1];
-    const updatedTask = await this.taskService.changeStatus(id, dto, token);
+  @UseGuards(JwtAuthGuard)
+  @Roles(UserRole.Сustomer)
+  public async changeStatus(@Param('id') id: number, @Body() dto: UpdateTaskDto) {
+    const updatedTask = await this.taskService.changeStatus(id, dto);
     return fillObject(TaskRdo, updatedTask);
   }
 
@@ -86,13 +105,12 @@ export class TaskController {
     description: 'Task with this ID does not exist'
   })
   @Get('/:id')
+  @UseGuards(JwtAuthGuard)
   public async show(@Param('id') id: number) {
     const existTask = await this.taskService.getTask(id);
     return fillObject(TaskRdo, existTask);
   }
 
- 
-  
   @ApiResponse({
     status: HttpStatus.NO_CONTENT,
     description: 'The task has been successfully deleted'
@@ -106,6 +124,8 @@ export class TaskController {
     description: 'The user does not have enough rights to delete the task'
   })
   @Delete(':id')
+  @UseGuards(JwtAuthGuard)
+  @Roles(UserRole.Сustomer)
   public async delete(@Param('id') taskId: number) {
     this.taskService.deleteTask(taskId);
   }
@@ -124,12 +144,13 @@ export class TaskController {
     description: 'The user does not have enough rights to see new tasks'
   })
   @Get('/')
-  async index(@Query() query: TaskQuery, @Headers('authorization') authorization?: string) {
-    const token = authorization?.split(' ')[1];
-    const tasks = await this.taskService.getNewTasks(query, token);
+  @UseGuards(JwtAuthGuard)
+  @Roles(UserRole.Executor)
+  async index(@Query() query: TaskQuery) {
+    const tasks = await this.taskService.getNewTasks(query);
     return fillObject(TaskRdo, tasks);
-  } 
-  
+  }
+
   @ApiResponse({
     type: TaskCommentRdo,
     status: HttpStatus.CREATED,
@@ -148,6 +169,7 @@ export class TaskController {
     description: 'Task with this ID does not exist'
   })
   @Post('/:taskId/comments')
+  @UseGuards(JwtAuthGuard)
   public async createComment(@Body() dto: CreateCommentDto, @Param('taskId') taskId: number, @Headers('authorization') authorization?: string) {
     const token = authorization?.split(' ')[1];
     const newComment = await this.taskService.createComment(dto, taskId, token);
@@ -164,6 +186,7 @@ export class TaskController {
     description: 'Task with this ID does not exist'
   })
   @Get('/:taskId/comments')
+  @UseGuards(JwtAuthGuard)
   async showComments(@Query() query: TaskCommentQuery, @Param('taskId') taskId: number) {
     const comments = await this.taskService.getComments(query, taskId);
     return fillObject(TaskCommentRdo, comments);

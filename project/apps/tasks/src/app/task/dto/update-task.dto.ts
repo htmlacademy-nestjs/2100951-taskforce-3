@@ -5,6 +5,14 @@ import { minTitleLength, maxTitleLength, TASK_TITLE_LENGTH, minDescriptionLength
 
 export class UpdateTaskDto {
     @ApiProperty({
+        description: 'The unique task ID',
+        example: '517854'
+    })
+    @IsOptional()
+    @IsPositive()
+    public taskId: number;
+
+    @ApiProperty({
         description: 'Task title',
         example: 'Come up with a title'
     })

@@ -3,11 +3,17 @@ import { TaskRepository } from './task.repository';
 import { TaskController } from './task.controller';
 import { TaskService } from './task.service';
 import { TaskCategoryModule } from '../task-category/task-category.module';
+import { AuthenticationModule } from '../authentication/authentication.module.js';
+import { NotifyModule } from '../notify/notify.module.js';
 
 @Module({
-  imports: [TaskCategoryModule],
+  imports: [
+    AuthenticationModule,
+    TaskCategoryModule,
+    NotifyModule
+  ],
   controllers: [TaskController],
   providers: [TaskService, TaskRepository],
-  exports: [TaskRepository]
+  exports: [TaskRepository, TaskService]
 })
 export class TaskModule { }

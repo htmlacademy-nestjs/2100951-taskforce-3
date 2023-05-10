@@ -5,6 +5,7 @@ import { Task, UserRole } from '@project/shared/app-types';
 import { PrismaService } from '../prisma/prisma.service';
 import { TaskQuery } from './query/task.query';
 import { City, TaskStatus } from '@prisma/client';
+import { UpdateTaskDto } from './dto/update-task.dto.js';
 
 @Injectable()
 export class TaskRepository implements CRUDRepository<TaskEntity, number, Task> {
@@ -77,9 +78,42 @@ export class TaskRepository implements CRUDRepository<TaskEntity, number, Task> 
   });
 }
 
-  public update(taskId: number, item: TaskEntity): Promise < Task > {
-    return Promise.resolve(undefined);
+public async update(taskId: number, item: TaskEntity): Promise<Task> {
+  const entityData = item.toObject();
+  return await this.prisma.task.update({
+    where: {
+      taskId,
+    },
+    data: {
+      title: entityData.title,
+      description: entityData.description,
+      categoryId: entityData.categoryId,
+      price: entityData.price,
+      deadline: entityData.deadline,
+      image: entityData.image,
+      address: entityData.address,
+      tags: entityData.tags,
+      city: entityData.city as City,
+      status: entityData.status as TaskStatus,
+      userId: entityData.userId,
+      executorId: entityData.executorId,
+    },
+    include: {
+      category: true,
     }
+  });
+}
+
+public async findUpdate(): Promise<UpdateTaskDto[]> {
+  const updateTasks = await this.prisma.update.findMany({
+    where: {},
+    select: {
+      taskId: true
+    }
+  });
+  updateTasks.map(async (task) => await this.prisma.update.delete({ where: { taskId: task.taskId } }));
+  return updateTasks;
+}
 
 public async findMyTasks(role: UserRole, id: string, status?: TaskStatus): Promise<Task[]> {
   let tasks: Task[];

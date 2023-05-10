@@ -17,6 +17,7 @@ export interface Task {
     createdAt: Date;
     publishAt: Date;
     review?: Review;
+    customerId?: string;
     executorId?: string;
     comments?: Comment[]
 }
