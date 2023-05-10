@@ -11,7 +11,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-
+  const port = process.env.PORT || 3333;
   const config = new DocumentBuilder()
     .setTitle('The Tasks service')
     .setDescription('Tasks service API')
@@ -24,11 +24,10 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe({
     transform: true,
   }));
-  
+
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('spec', app, document);
 
-  const port = process.env.PORT || 3333;
   await app.listen(port);
   Logger.log(
     `🚀 Application is running on: http://localhost:${port}/${globalPrefix}`
