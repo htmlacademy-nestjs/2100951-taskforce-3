@@ -31,6 +31,7 @@ model Task {
   userId      String?    @map("user_id")
   executorId  String?    @map("executor_id")
   customerId  String?    @map("customer_id")
+  Update      Update[]
 
   @@map("tasks")
 }
@@ -85,4 +86,11 @@ enum TaskStatus {
   InWork
   Done
   Failed
+}
+
+model Update {
+  taskId Int  @id @map("task_id")
+  task   Task @relation(fields: [taskId], references: [taskId], onDelete: Cascade, onUpdate: Cascade)
+
+  @@map("updates")
 }
