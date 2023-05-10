@@ -30,6 +30,7 @@ model Task {
   publishAt   DateTime   @updatedAt @map("publish_at")
   userId      String?    @map("user_id")
   executorId  String?    @map("executor_id")
+  customerId  String?    @map("customer_id")
 
   @@map("tasks")
 }

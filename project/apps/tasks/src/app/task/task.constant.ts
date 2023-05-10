@@ -1,4 +1,5 @@
-import { SortOrder, SortType } from "@project/shared/app-types";
+import { SetMetadata } from "@nestjs/common";
+import { SortOrder, SortType, UserRole } from "@project/shared/app-types";
 
 export const DEFAULT_TASK_COUNT_LIMIT = 10;
 export const DEFAULT_SORT_DIRECTION = 'desc';
@@ -22,14 +23,5 @@ export const TASK_STATUS_NOT_VALID = 'Status Not Valid'
 export const DEFAULT_SORT_ORDER = SortOrder.Descended;
 export const DEFAULT_SORT_TYPE = SortType.CreatedAt;
 
-export const enum TaskException {
-    ChangeStatusRight = 'The user does not have enough right to change status',
-    IncorrectChangeStatus = 'The status should be change only from new to inprogress or cancelled and from inprogress to done or failed. Only the executor can change status to failed',
-    Unauthorized = 'The user is unauthorized',
-    Forbidden = 'The user does not have enough rights for this action',
-    NotExisted = 'The task is not existed',
-    TaskNotNew = 'The reply can be made only for the task with status NEW',
-    NotExecutorReply = 'This executor did not put the reply for this task',
-    NotChooseExecutor = 'To set status to inProgress the user should choose the executor',
-    ExecutorBusy = 'The executor has tasks in work and cannot be chosen'
-  }
+export const ROLES_KEY = 'roles';
+export const Roles = (...roles: UserRole[]) => SetMetadata(ROLES_KEY, roles);

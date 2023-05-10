@@ -17,6 +17,7 @@ export class TaskEntity implements Task {
   public createdAt: Date;
   public publishAt: Date;
   public executorId?: string;
+  public customerId: string;
 
   constructor(task: Task) {
     this.fillEntity(task);
@@ -46,5 +47,6 @@ export class TaskEntity implements Task {
     this.createdAt = task.createdAt;
     this.publishAt = task.publishAt;
     this.executorId = task.executorId;
+    this.customerId = task.customerId;
   }
 }
