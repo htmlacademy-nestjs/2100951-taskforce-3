@@ -5,7 +5,7 @@ import { Task, UserRole } from '@project/shared/app-types';
 import { PrismaService } from '../prisma/prisma.service';
 import { TaskQuery } from './query/task.query';
 import { City, TaskStatus } from '@prisma/client';
-import { UpdateTaskDto } from './dto/update-task.dto.js';
+import { UpdateTaskDto } from './dto/update-task.dto';
 
 @Injectable()
 export class TaskRepository implements CRUDRepository<TaskEntity, number, Task> {
