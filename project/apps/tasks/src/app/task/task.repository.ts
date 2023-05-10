@@ -4,8 +4,7 @@ import { TaskEntity } from './task.entity';
 import { Task, UserRole } from '@project/shared/app-types';
 import { PrismaService } from '../prisma/prisma.service';
 import { TaskQuery } from './query/task.query';
-import { City, TaskStatus } from '@prisma/client';
-import { UpdateTaskDto } from './dto/update-task.dto';
+import { City, TaskStatus, Update } from '@prisma/client';
 
 @Injectable()
 export class TaskRepository implements CRUDRepository<TaskEntity, number, Task> {
@@ -104,7 +103,7 @@ public async update(taskId: number, item: TaskEntity): Promise<Task> {
   });
 }
 
-public async findUpdate(): Promise<UpdateTaskDto[]> {
+public async findUpdate(): Promise<Update[]> {
   const updateTasks = await this.prisma.update.findMany({
     where: {},
     select: {

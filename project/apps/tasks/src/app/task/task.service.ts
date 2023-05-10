@@ -11,6 +11,7 @@ import { CreateCommentDto } from '../task-comment/dto/create-comment.dto';
 import { TaskCommentEntity } from '../task-comment/task-comment.entity';
 import { TaskCommentRepository } from '../task-comment/task-comment.repository';
 import { TaskCommentQuery } from '../task-comment/query/task-comment.query';
+import { Update } from '@prisma/client';
 
 @Injectable()
 export class TaskService {
@@ -60,7 +61,7 @@ export class TaskService {
     return await this.taskRepository.findById(id);
   }
 
-  async getUpdate(): Promise<UpdateTaskDto[]> {
+  async getUpdate(): Promise<Update[]> {
     return this.taskRepository.findUpdate();
   }
 
